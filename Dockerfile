@@ -2,6 +2,7 @@ FROM nvcr.io/nvidia/pytorch:20.07-py3
 
 EXPOSE 8888
 
+# install basic tool
 RUN apt-get update && apt-get install -y --no-install-recommends \
          build-essential \
          git \
