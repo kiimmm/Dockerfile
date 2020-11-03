@@ -21,7 +21,7 @@ RUN curl -LO https://github.com/source-foundry/Hack/releases/download/v3.003/Hac
 
 # install basic python tool
 RUN pip install --upgrade pip
-RUN pip install --upgrade jupyterlab==2.3.0a1 wheel wrapt jupyter-lsp jupyterlab-git black isort jupyter-tensorboard jupytext
+RUN pip install --upgrade jupyterlab==2.3.0a1 wheel wrapt jupyter-lsp jupyterlab-git black isort jupyter-tensorboard jupytext ipywidgets
 
 # install nodejs for jupyterlab-lsp
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
