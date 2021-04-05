@@ -2,14 +2,16 @@
 
 ## Overview
 JupyterLab dockerfile to use Pytorch on CUDA environment
-* Dockerfile based on [nvidia/pytorch:20.10-py3](https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel_20-10.html#rel_20-10)
-  * Ubuntu 18.04 (Python 3.6)
-  * NVIDIA CUDA 11.1.0
-  * Pytorch 1.7 (currently stable version)
-* JupyterLab 2.3.0a1
+* Dockerfile based on [nvidia/pytorch:20.12-py3](https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel_21-02.html#rel_21.02)
+  * Ubuntu 20.04 (Python 3.8)
+  * NVIDIA CUDA 11.2.0
+  * Pytorch 1.8
+* JupyterLab 3.X
   * Upgraded from original JupyterLab v1.x
-  * With several JupyterLab extensions
+  * [Darcula](https://github.com/telamonian/theme-darcula), [ipywidgets](https://github.com/jupyter-widgets/ipywidgets), [Code Formatter](https://github.com/ryantam626/jupyterlab_code_formatter), [Collapsable Headings](https://github.com/aquirdTurtle/Collapsible_Headings), [Spellchecker](https://github.com/jupyterlab-contrib/spellchecker), [LSP](https://github.com/krassowski/jupyterlab-lsp)
 * Set default font to [Hack Font](https://github.com/source-foundry/Hack)
+* Install [Spacemacs](https://github.com/syl20bnr/spacemacs)
+* Install [oh-my-zsh](https://ohmyz.sh/)
 ## Some Points
 * `PORT1`: port for jupyter lab
 * `PORT2`: port for python lsp
