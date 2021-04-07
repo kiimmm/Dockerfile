@@ -43,6 +43,7 @@ RUN git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 # install basic python tools
 RUN pip install --upgrade pip
 RUN pip install --upgrade jupyterlab theme-darcula tqdm ipywidgets jupyterlab_code_formatter black isort aquirdturtle_collapsible_headings jupyterlab-spellchecker jupyterlab-lsp efficientnet_pytorch visdom
+RUN pip install 'python-language-server[all]'
 
 RUN jupyter lab clean
 RUN jupyter lab build
