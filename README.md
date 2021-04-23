@@ -20,7 +20,7 @@ JupyterLab dockerfile to use Pytorch on CUDA environment
 * `YOUR_ENCRYPTED_PASSWD`: SHA1 encrypted password. I hard-code encrypted password to the dockerfile to avoid type token every time. A way to generate SHA1-encrypted password:
   * ```
     > ipython
-    > from notebook.auth import passwd
+    > from IPython.lib import passwd
     > passwd()
     type your PASSWD
     > OUTPUT: sha1: SHA1-encrypted-password
