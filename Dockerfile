@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:20.12-py3
+FROM nvcr.io/nvidia/pytorch:22.10-py3
 
 EXPOSE PORT1 PORT2
 
@@ -11,10 +11,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
          zip \
          unzip \
          bzip2 \
-         htop \ 
+         htop \
+         fonts-powerline \
+         software-properties-common \
          tmux \
-         fonts-powerline \ 
-         software-properties-common
+         cloc
+
+# ---------
+# MULTIVERSE
+# ---------
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends software-properties-common curl
+RUN apt-add-repository multiverse
+RUN apt-get update
+
+# msttcorefonts
+RUN echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections
+RUN apt-get install -y --no-install-recommends fontconfig ttf-mscorefonts-installer
+RUN fc-cache -f -v
 
 # Hack as basic font
 WORKDIR /tmp
@@ -43,7 +57,7 @@ RUN git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 # install basic python tools
 RUN pip install --upgrade pip
-RUN pip install --upgrade jupyterlab theme-darcula tqdm ipywidgets jupyterlab_code_formatter black isort aquirdturtle_collapsible_headings jupyterlab-spellchecker jupyterlab-lsp efficientnet_pytorch visdom
+RUN pip install --upgrade jupyterlab theme-darcula tqdm ipywidgets jupyterlab_code_formatter black isort aquirdturtle_collapsible_headings jupyterlab-spellchecker jupyterlab-lsp visdom timm torchtoolbox wandb einops pandas munch Pillow tsai scikit-learn matplotlib seaborn fastai
 RUN pip install 'python-language-server[all]'
 
 RUN jupyter lab clean
@@ -58,8 +72,13 @@ RUN ldconfig && \
     rm -rf /var/lib/apt/lists/* /tmp/*
 
 WORKDIR YOUR_WORKING_DIR
-RUN jupyter notebook --generate-config
-RUN echo "c.NotebookApp.token=''">>/root/.jupyter/jupyter_notebook_config.py
-RUN echo "c.NotebookApp.open_browser = False">>/root/.jupyter/jupyter_notebook_config.py
-RUN echo "c.NotebookApp.password='YOUR_ENCRYPTED_PASSWD'">>/root/.jupyter/jupyter_notebook_config.py
-RUN echo "c.NotebookApp.port = PORT1">>/root/.jupyter/jupyter_notebook_config.py
+RUN jupyter server --generate-config
+RUN echo "c.ServerApp.token=''">>/root/.jupyter/jupyter_server_config.py
+RUN echo "c.ServerApp.open_browser = False">>/root/.jupyter/jupyter_server_config.py
+RUN echo "c.ServerApp.password=u'sha1:YOUR_ENCRYPTED_PASSWD'">>/root/.jupyter/jupyter_server_config.py
+RUN echo "c.ServerApp.allow_password_change=False">>/root/.jupyter/jupyter_server_config.py
+RUN echo "c.ServerApp.port = PORT1">>/root/.jupyter/jupyter_server_config.py
+
+# Github config
+RUN git config --global user.name GIT_USERNAME
+RUN git config --global user.email GIT_EMAIL
