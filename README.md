@@ -11,7 +11,7 @@ JupyterLab dockerfile to use Pytorch on CUDA environment
   * [Darcula](https://github.com/telamonian/theme-darcula), [ipywidgets](https://github.com/jupyter-widgets/ipywidgets), [Code Formatter](https://github.com/ryantam626/jupyterlab_code_formatter), [Collapsable Headings](https://github.com/aquirdTurtle/Collapsible_Headings), [Spellchecker](https://github.com/jupyterlab-contrib/spellchecker), [LSP](https://github.com/krassowski/jupyterlab-lsp)
 * Set default font to [Hack Font](https://github.com/source-foundry/Hack)
 * Install [Spacemacs](https://github.com/syl20bnr/spacemacs)
-* Install [oh-my-zsh](https://ohmyz.sh/
+* Install [oh-my-zsh](https://ohmyz.sh/)
 * Install mscorefonts
 * Some other packages...
 
